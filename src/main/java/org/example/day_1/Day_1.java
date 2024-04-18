@@ -5,7 +5,6 @@ import org.example.utils.Utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 class Tuple {
     String key;
@@ -17,7 +16,7 @@ class Tuple {
     }
 }
 
-public class Trebuchet {
+public class Day_1 {
     public static void main(String[] args) {
         try {
             ArrayList<String> inputLines = Utils.readInputLines("trebuchet");
