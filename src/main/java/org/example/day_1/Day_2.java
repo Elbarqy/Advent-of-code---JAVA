@@ -12,27 +12,25 @@ public class Day_2 {
     public static void main(String[] args) throws IOException {
         ArrayList<String> lines = Utils.readInputLines("cubeConundrum");
         int sum = 0;
-        HashMap<String, Integer> limits = new HashMap<>() {{
-            put("red", 12);
-            put("green", 13);
-            put("blue", 14);
-        }};
         for (String line : lines) {
             String[] initial = line.split(":");
             int gameId = Integer.parseInt(initial[0].split(" ")[1]);
             String regex = "(\\d+) (\\w+)";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(initial[1]);
-            boolean flag = true;
+            HashMap<String, Integer> mapCount = new HashMap<>();
+            String[] items = new String[]{"red", "green", "blue"};
             while (matcher.find()) {
                 int number = Integer.parseInt(matcher.group(1));
                 String word = matcher.group(2);
-                if (limits.get(word) < number) {
-                    flag = false;
-                    break;
-                }
+                int currCount = mapCount.getOrDefault(word, 0);
+                mapCount.put(word, Math.max(currCount, number));
             }
-            if (flag) sum += gameId;
+            int mul = 1;
+            for(String item: items){
+                mul *= mapCount.getOrDefault(item, 0);
+            }
+            sum += mul;
         }
         System.out.println(sum);
     }
