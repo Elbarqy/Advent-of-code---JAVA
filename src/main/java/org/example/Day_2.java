@@ -1,4 +1,4 @@
-package org.example.day_1;
+package org.example;
 
 import org.example.utils.Utils;
 
